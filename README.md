@@ -1,7 +1,7 @@
-# 🖥️ Thread Scheduler Simulator
+# 🖥️ CPU Scheduling Simulator
 
-A CPU Scheduling Simulator written in **C**, implementing classic Operating System scheduling algorithms.  
-This project demonstrates key OS concepts such as **process scheduling**, **waiting time calculation**, **turnaround time analysis**, and **CPU utilization**.  
+A **cross-platform** CPU Scheduling Simulator written in **C**, implementing classic Operating System scheduling algorithms.  
+This project demonstrates key OS concepts such as **process scheduling**, **waiting time calculation**, **turnaround time analysis**, and **CPU utilization**.
 
 ---
 
@@ -13,69 +13,155 @@ This project demonstrates key OS concepts such as **process scheduling**, **wait
   - ✅ Round Robin (RR)
   - ✅ Priority Scheduling (Non-Preemptive)
 - **Detailed Metrics**
-  - Waiting Time
-  - Turnaround Time
-  - Gantt Chart (text-based)
+  - Waiting Time & Turnaround Time calculation
+  - Gantt Chart visualization (text-based)
+  - Average performance metrics
+- **Cross-Platform Support**
+  - Works on Windows, Linux, and macOS
+  - Automatic OS detection and compilation
 - **Interactive Menu**
-  - Select any algorithm from a central launcher
-- **Clean Structure**
-  - Each algorithm is implemented in its own module
+  - User-friendly interface to select algorithms
+- **Clean Modular Structure**
+  - Each algorithm implemented in separate modules
+
+---
+
+## 🚀 Quick Start Guide (First-Time Users)
+
+### Prerequisites
+- **GCC Compiler** (GNU Compiler Collection)
+  - **Windows**: Install [MinGW-w64](https://www.mingw-w64.org/) or use [Dev-C++](https://www.bloodshed.net/devcpp.html)
+  - **Linux**: `sudo apt install gcc` (Ubuntu/Debian) or `sudo yum install gcc` (RedHat/CentOS)
+  - **macOS**: Install Xcode Command Line Tools: `xcode-select --install`
+
+### Step 1: Clone or Download the Project
+```bash
+# Option 1: Clone with Git
+git clone https://github.com/Flames004/thread_scheduler_simulator.git
+cd thread_scheduler_simulator
+
+# Option 2: Download ZIP and extract
+# Then navigate to the extracted folder
+```
+
+### Step 2: Build the Project
+
+**🪟 Windows Users:**
+```cmd
+cd src
+build.bat
+```
+
+**🐧 Linux/Unix Users:**
+```bash
+cd src
+chmod +x build.sh
+./build.sh
+```
+
+**🍎 macOS Users:**
+```bash
+cd src
+chmod +x build.sh
+./build.sh
+```
+
+### Step 3: Run the Simulator
+
+**🪟 Windows:**
+```cmd
+scheduler.exe
+```
+
+**🐧 Linux/Unix/macOS:**
+```bash
+./scheduler
+```
 
 ---
 
 ## 📂 Project Structure
 
 ```
-
 thread-scheduler-simulator/
 │
-├── src
-│   ├── main.c                   # Central launcher
-│   ├── build.sh                 # Script to compile everything
+├── src/                         # Source code directory
+│   ├── main.c                   # Main menu and program entry
 │   ├── fcfs/
 │   │   └── fcfs.c               # FCFS implementation
 │   ├── sjf/
-│   │   └── sjf.c                # SJF (Non-preemptive) implementation
+│   │   └── sjf.c                # SJF implementation
 │   ├── round_robin/
 │   │   └── rr.c                 # Round Robin implementation
-│   └── priority/
-│       └── priority.c           # Priority Scheduling implementation
-│   
-├── examples/
-│   ├── input1.txt           # Example input
-│   ├── input2.txt
-│   └── output\_demo.txt      # Sample output
+│   ├── priority/
+│   │   └── priority.c           # Priority Scheduling implementation
+│   ├── build.bat                # Windows build script
+│   ├── build.sh                 # Linux/Unix build script
+│   ├── build-universal.sh       # Universal build script
+│   └── Makefile                 # Cross-platform Makefile
 │
-├── docs/
-│   ├── gantt\_example.png    # Example Gantt Chart
-│   └── flowchart.png        # Optional flowchart of scheduling logic
-├── .gitignore               # Ignore compiled files
-└── README.md                # Project documentation
-
-````
+├── examples/                    # Example inputs and outputs
+│   ├── input1.txt               # Sample process data
+│   ├── input2.txt               # More sample data
+│   └── output_demo.txt          # Expected output examples
+│
+├── docs/                        # Documentation and diagrams
+│   ├── gantt_example.png        # Gantt chart examples
+│   └── flowchart.png            # Algorithm flowcharts
+│
+├── .gitignore                   # Git ignore file
+└── README.md                    # This file
+```
 
 ---
 
-## ⚙️ How to Build and Run
+## 🛠️ Advanced Build Options
 
-### 1. Clone the Repository
+### Option 1: Simple Build Scripts (Recommended for Beginners)
+
+**Windows:**
+```cmd
+cd src
+build.bat
+```
+
+**Linux/Unix:**
 ```bash
-git clone https://github.com/Flames004/thread_scheduler_simulator.git
-cd thread_scheduler_simulator
-````
-
-### 2. Compile Everything
-
-Using the provided script:
-
-```bash
-chmod +x build.sh
+cd src
 ./build.sh
 ```
 
-Or compile manually:
-
+### Option 2: Universal Build Script
+Works on all platforms (including Git Bash on Windows):
 ```bash
+cd src
+chmod +x build-universal.sh
+./build-universal.sh
+```
+
+### Option 3: Using Make (Advanced Users)
+```bash
+cd src
+make           # Build all
+make clean     # Clean compiled files
+make help      # Show help
+```
+
+### Option 4: Manual Compilation
+
+**Windows:**
+```cmd
+cd src
+gcc fcfs/fcfs.c -o fcfs/fcfs.exe
+gcc sjf/sjf.c -o sjf/sjf.exe
+gcc round_robin/rr.c -o round_robin/rr.exe
+gcc priority/priority.c -o priority/priority.exe
+gcc main.c -o scheduler.exe
+```
+
+**Linux/Unix/macOS:**
+```bash
+cd src
 gcc fcfs/fcfs.c -o fcfs/fcfs
 gcc sjf/sjf.c -o sjf/sjf
 gcc round_robin/rr.c -o round_robin/rr
@@ -83,17 +169,11 @@ gcc priority/priority.c -o priority/priority
 gcc main.c -o scheduler
 ```
 
-### 3. Run the Launcher
-
-```bash
-./scheduler
-```
-
 ---
 
-## 📊 Example Run
+## 📊 Example Usage
 
-### Input
+### Sample Input/Output
 
 ```
 ===== CPU Scheduling Simulator =====
@@ -108,11 +188,7 @@ Enter number of processes: 3
 Enter Arrival Time and Burst Time for P1: 0 5
 Enter Arrival Time and Burst Time for P2: 1 3
 Enter Arrival Time and Burst Time for P3: 2 8
-```
 
-### Output
-
-```
 --- FCFS Scheduling ---
 Gantt Chart:
 | P1 | P2 | P3 |
@@ -127,37 +203,86 @@ Average Turnaround Time: 8.33
 ## 📘 Algorithms Explained
 
 ### 🔹 First Come First Serve (FCFS)
-
-* Processes are scheduled in the order they arrive.
-* **Non-preemptive**: once a process starts, it runs until completion.
-* Fair but may cause **Convoy Effect**.
+- **Simple**: Processes executed in arrival order
+- **Non-preemptive**: Once started, runs to completion
+- **Pros**: Fair, easy to implement
+- **Cons**: May cause convoy effect (long processes block short ones)
 
 ### 🔹 Shortest Job First (SJF - Non-Preemptive)
-
-* Always selects the process with the smallest **burst time** among the available ones.
-* Minimizes average waiting time.
-* May cause **starvation** for long processes.
+- **Optimal**: Minimizes average waiting time
+- **Greedy**: Always picks shortest remaining job
+- **Pros**: Efficient for batch systems
+- **Cons**: May cause starvation for long processes
 
 ### 🔹 Round Robin (RR)
-
-* Each process gets a fixed **time quantum** in a cyclic order.
-* **Preemptive**: ensures fairness.
-* Best for **time-sharing systems**.
+- **Time-sharing**: Each process gets fixed time quantum
+- **Preemptive**: Ensures fairness through rotation
+- **Pros**: Good response time, fair
+- **Cons**: Context switching overhead
 
 ### 🔹 Priority Scheduling
+- **Priority-based**: Higher priority processes run first
+- **Flexible**: Can be preemptive or non-preemptive
+- **Pros**: Important tasks get preference
+- **Cons**: Low priority processes may starve
 
-* Each process has a priority; CPU is given to the highest priority process.
-* **Non-preemptive** in this implementation.
-* May cause **starvation** for low-priority processes (can be avoided with aging).
+---
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**1. "gcc: command not found"**
+- Install GCC compiler for your operating system
+- On Windows: Install MinGW or use an IDE like Dev-C++
+- On Linux: `sudo apt install gcc` or `sudo yum install gcc`
+- On macOS: `xcode-select --install`
+
+**2. "Permission denied" on Linux/macOS**
+```bash
+chmod +x build.sh
+chmod +x build-universal.sh
+```
+
+**3. "No such file or directory" when running**
+- Make sure you're in the `src` directory
+- Check if compilation was successful (no error messages)
+
+**4. Build script doesn't work**
+- Try manual compilation method
+- Check if all source files exist in their respective folders
 
 ---
 
-## 📈 Future Enhancements
+## 🌟 Future Enhancements
 
-* Add **SJF Preemptive (Shortest Remaining Time First)**.
-* Include **Multilevel Queue Scheduling**.
-* Create a **graphical Gantt chart** using Python or C graphics.
-* Add support for reading processes from a file.
+- [ ] Add **SJF Preemptive (Shortest Remaining Time First)**
+- [ ] Implement **Multilevel Queue Scheduling**
+- [ ] Create **graphical Gantt charts** using Python/GUI
+- [ ] Add **file input support** for batch processing
+- [ ] Include **aging mechanism** to prevent starvation
+- [ ] Add **real-time scheduling algorithms**
 
 ---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/new-algorithm`)
+3. **Commit** your changes (`git commit -am 'Add new scheduling algorithm'`)
+4. **Push** to the branch (`git push origin feature/new-algorithm`)
+5. **Open** a Pull Request
+
+### Areas for Contribution:
+- New scheduling algorithms
+- GUI implementation
+- Performance optimizations
+- Better error handling
+- Documentation improvements
+
+---
+
+**Happy Scheduling! 🎯**
 

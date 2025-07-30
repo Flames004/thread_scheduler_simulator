@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Cross-platform executable paths
+#ifdef _WIN32
+    #define FCFS_EXEC "fcfs\\fcfs.exe"
+    #define SJF_EXEC "sjf\\sjf.exe"
+    #define RR_EXEC "round_robin\\rr.exe"
+    #define PRIORITY_EXEC "priority\\priority.exe"
+#else
+    #define FCFS_EXEC "./fcfs/fcfs"
+    #define SJF_EXEC "./sjf/sjf"
+    #define RR_EXEC "./round_robin/rr"
+    #define PRIORITY_EXEC "./priority/priority"
+#endif
+
 int main() {
     int choice;
 
@@ -16,16 +29,16 @@ int main() {
 
         switch(choice) {
             case 1:
-                system("./fcfs/fcfs");
+                system(FCFS_EXEC);
                 break;
             case 2:
-                system("./sjf/sjf");
+                system(SJF_EXEC);
                 break;
             case 3:
-                system("./round_robin/rr");
+                system(RR_EXEC);
                 break;
             case 4:
-                system("./priority/priority");
+                system(PRIORITY_EXEC);
                 break;
             case 5:
                 printf("Exiting...\n");
